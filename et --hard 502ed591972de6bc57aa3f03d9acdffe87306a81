@@ -1,0 +1,23 @@
+[33mcommit 502ed591972de6bc57aa3f03d9acdffe87306a81[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Isaia91 <isaia.maperi@gmail.com>
+Date:   Thu Feb 20 14:11:39 2025 +1100
+
+    before rollback
+
+[33mcommit 1e0adaeca19983a1e3bc23e339b7999a29714a27[m
+Author: Isaia91 <isaia.maperi@gmail.com>
+Date:   Thu Feb 20 13:48:15 2025 +1100
+
+    create and bind to db, create table bookmark, create view, controller and entity for bookmark
+
+[33mcommit 18ff7e3535ea07cc2ad4c14581bdfd4e0e4d5c9f[m
+Author: Isaia91 <isaia.maperi@gmail.com>
+Date:   Thu Feb 20 12:03:49 2025 +1100
+
+    Add webapp packages
+
+[33mcommit d0642381cfcc2ec74bed02ea7707dcba088f9ce1[m
+Author: Isaia91 <isaia.maperi@gmail.com>
+Date:   Thu Feb 20 11:42:57 2025 +1100
+
+    Add initial set of files
