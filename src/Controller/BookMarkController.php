@@ -3,12 +3,15 @@
 namespace App\Controller;
 
 use App\Repository\BookMarkRepository;
+use http\Client\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use App\Entity\BookMark;
 use Doctrine\ORM\EntityManagerInterface;
 
+
+#[Route('/book/mark', name: 'book_mark_')]
 final class BookMarkController extends AbstractController
 {
 
@@ -18,8 +21,8 @@ final class BookMarkController extends AbstractController
             'controller_name' => 'BookMarkController',
         ]);
     }*/
-    #[Route("/book/mark/add", name: "add_bookmark")]
-    public function add_bookmark(EntityManagerInterface $entityManager): Response
+    #[Route("/add/static", name: "add_bookmark_static")]
+    public function add_bookmark_static(EntityManagerInterface $entityManager): Response
     {
         // Les données à ajouter
         $data = [
@@ -40,14 +43,13 @@ final class BookMarkController extends AbstractController
 
 
         //on ajoute lorsque que l'on accede a la page
-        $entityManager->flush();
+        $entityManager->flush(); // Enregistre en base de données
 
-        //redirection vers la page des bookmarks
-        return $this->redirectToRoute('app_book_mark');
+        return $this->redirectToRoute('book_mark_app_book_mark'); // Redirection vers la liste des bookmarks
     }
 
 
-    #[Route('/book/mark', name: 'app_book_mark')]
+    #[Route('', name: 'app_book_mark')]
     public function index(BookMarkRepository $bookMarkRepository): Response
     {
         $bookmarks = $bookMarkRepository->findAll();
@@ -56,5 +58,48 @@ final class BookMarkController extends AbstractController
             'bookmarks' => $bookmarks,
         ]);
 
+
+
     }
+
+    #[Route("/add", name: "add_bookmark", methods: ['POST'])]
+    public function add_bookmark(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        // Récupérer les données envoyées par le formulaire
+        $url = $request->request->get('url');
+        $commentaire = $request->request->get('commentaire');
+
+        // Créer un nouvel objet BookMark avec les données du formulaire
+        $bookmark = new BookMark();
+        $bookmark->setUrl($url);
+        $bookmark->setCommentaire($commentaire);
+        $bookmark->setDateCreation(new \DateTime());
+
+        // Persister l'objet en base de données
+        $entityManager->persist($bookmark);
+        $entityManager->flush();
+
+        // Redirection vers la liste des bookmarks avec un message de succès
+        return $this->redirectToRoute('book_mark_app_book_mark', [
+            'success' => true,
+        ]);
+    }
+
+
+
+    #[Route('/{id}',  name: "book_mark_detail", requirements: ["id" => "\d+"])]
+    public function detail_bookmark(int $id, BookMarkRepository $bookMarkRepository): Response
+    {
+        $bookmark = $bookMarkRepository->find($id);
+
+
+
+        return $this->render('book_mark/detail.html.twig', [
+            'bookmark' => $bookmark,
+        ]);
+
+    }
+
+
+
 }
