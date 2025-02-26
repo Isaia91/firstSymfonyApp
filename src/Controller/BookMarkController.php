@@ -89,7 +89,7 @@ final class BookMarkController extends AbstractController
 
 
 
-    #[Route('/{id}',  name: "book_mark_detail", requirements: ["id" => "\d+"])]
+    #[Route('/{id}',  name: "detail", requirements: ["id" => "\d+"])]
     public function detail_bookmark(int $id, BookMarkRepository $bookMarkRepository): Response
     {
         $bookmark = $bookMarkRepository->find($id);
