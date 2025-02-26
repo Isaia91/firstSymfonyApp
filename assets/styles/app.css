@@ -1,1 +1,55 @@
+.title-content {
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    height: 15vh; /* Ajuste selon ton besoin */
+    overflow: hidden; /* Empêche tout débordement */
+}
 
+.title-content h4 {
+    color: #fff;
+    font-size: 4em;
+    position: absolute;
+}
+
+.title-content h4:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 1px #B2B2B2;
+}
+
+.title-content h4:nth-child(2) {
+    color: #B2B2B2;
+    animation: animate 4s ease-in-out infinite;
+}
+
+@keyframes animate {
+    0%,
+    100% {
+        clip-path: polygon(
+                0% 40%,  /* ↓ Ajuste la hauteur du début de la vague */
+                16% 42%,
+                33% 48%,
+                54% 58%,
+                70% 60%,
+                84% 58%,
+                100% 50%,
+                100% 105%, /* ↑ Étend la zone de découpe pour couvrir les lettres descendantes */
+                0% 105%
+        );
+    }
+
+    50% {
+        clip-path: polygon(
+                0% 55%,
+                15% 60%,
+                34% 63%,
+                51% 58%,
+                67% 48%,
+                84% 42%,
+                100% 44%,
+                100% 105%,
+                0% 105%
+        );
+    }
+}
