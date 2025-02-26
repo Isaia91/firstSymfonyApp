@@ -31,6 +31,20 @@
                     <td><strong>Commentaire</strong></td>
                     <td>{{ bookmark.commentaire }}</td>
                 </tr>
+                <tr>
+                    <td>Tag</td>
+                    <td>
+                        {% if bookmark.tags is not empty %}
+                            <ul class="list-unstyled">
+                                {% for tag in bookmark.tags %}
+                                    <li class="badge bg-secondary">{{ tag.name }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <span class="text-muted">Aucun tag</span>
+                        {% endif %}
+                    </td>
+                </tr>
                 </tbody>
             </table>
         {% else %}
