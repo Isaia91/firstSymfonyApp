@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Bookmarks{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Liste des Bookmarks</h1>
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Titre</th>
+                <th>Date de création</th>
+                <th>Auteur</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for book in books %}
+                <tr>
+                    <td> {{ book.titre }} </td>
+                    <td>{{ book.dateCreation|date('d/m/Y H:i') }}</td>
+                    <td>
+                        {% if book.author is not null %}
+                            {{ book.author.nom ~ ' ' ~ book.author.prenom }}
+                        {% else %}
+                            Auteur inconnu
+                        {% endif %}
+
+
+                    </td>
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted">Aucun book trouvé.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <div class="card p-3 mt-4">
+            <h2>Ajouter un Bookmark</h2>
+            <form method="post" action="/book/mark/add">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="url" class="form-label">URL :</label>
+                        <input type="url" id="url" name="url" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="commentaire" class="form-label">Commentaire :</label>
+                        <input type="text" id="commentaire" name="commentaire" class="form-control" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Ajouter</button>
+            </form>
+        </div>
+    </div>
+
+
+{% endblock %}
