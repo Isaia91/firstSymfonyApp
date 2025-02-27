@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="container">
+        <div class="row">
+            {% for cat in categories %}
+                <div class="col-12 mb-4">
+                    <h4 class="category-title text-center">
+                        <a href="{{ path('category_detail_category', { 'id': cat.id }) }}" class="text-decoration-none prettier-hover">
+                            {{ cat.nom }}
+                        </a>
+                    </h4>
+
+
+
+                    <div class="row">
+                        {% if cat.media is not empty %}
+                            {% for media in cat.media %}
+                                <div class="col-md-4 my-4">
+                                    <div class="card">
+                                        <img src="{{ asset('img/cailloux/' ~ media.lien) }}"
+                                             class="card-img-top" alt="{{ media.nom }}">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ media.nom }}</h5>
+                                            <p class="card-text">{{ media.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted">Aucun média associé</p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

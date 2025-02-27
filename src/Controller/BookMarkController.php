@@ -53,11 +53,9 @@ final class BookMarkController extends AbstractController
     public function index(BookMarkRepository $bookMarkRepository): Response
     {
         $bookmarks = $bookMarkRepository->findAll();
-        $baseUrl = '/book/mark';
         return $this->render('book_mark/index.html.twig', [
             'controller_name' => 'BookMarkController',
             'bookmarks' => $bookmarks,
-            'baseUrl' =>$baseUrl,
         ]);
 
 

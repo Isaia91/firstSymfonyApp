@@ -24,3 +24,8 @@
         {{ include('fragments/_footer.html.twig') }}
     </footer>
 </html>
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger">
+        {{ message }}
+    </div>
+{% endfor %}
