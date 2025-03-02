@@ -1,10 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Bookmarks{% endblock %}
+{% block title %}Liste des Books{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1 class="mb-4">Liste des Bookmarks</h1>
+        <h1 class="mb-4">Liste des Books</h1>
+
+        <div class="d-flex mb-3">
+            <div class="input-group w-auto">
+                <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Premiere lettre du livre"
+                        aria-label="Premiere lettre du livre"
+                        aria-describedby="button-addon1"
+                        id="book-letter"
+                />
+                <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" type="button" id="button-addon1" data-mdb-ripple-color="dark">
+                    Filtrer
+                </button>
+                <button class="ml-3 bg-success" onclick="window.location.reload();">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                        <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41m-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9"/>
+                        <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5 5 0 0 0 8 3M3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9z"/>
+                    </svg>
+                </button>
+
+            </div>
+        </div>
 
         <table class="table table-striped table-hover">
             <thead class="table-dark">
@@ -25,10 +48,7 @@
                         {% else %}
                             Auteur inconnu
                         {% endif %}
-
-
                     </td>
-
                 </tr>
             {% else %}
                 <tr>
@@ -37,27 +57,10 @@
             {% endfor %}
             </tbody>
         </table>
-    </div>
-    {#
-    <div class="container">
-        <div class="card p-3 mt-4">
-            <h2>Ajouter un Bookmark</h2>
-            <form method="post" action="/book/mark/add">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="url" class="form-label">URL :</label>
-                        <input type="url" id="url" name="url" class="form-control" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="commentaire" class="form-label">Commentaire :</label>
-                        <input type="text" id="commentaire" name="commentaire" class="form-control" required>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Ajouter</button>
-            </form>
-        </div>
-    </div>
-    #}
+        <p>Nombre total de livre : {{ countBook }}</p>
+        {% if baseUrl %}
+            <a href="{{ baseUrl }}" class="btn btn-primary">Accueil</a>
+        {% endif %}
 
-
+    </div>
 {% endblock %}

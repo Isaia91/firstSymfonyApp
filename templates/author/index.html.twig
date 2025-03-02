@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Auteurs{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Liste des Auteurs</h1>
+
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Date de création</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for auteur in authors %}
+                <tr>
+                    <td> {{ auteur.nom }} </td>
+                    <td> {{ auteur.prenom }}</td>
+                    <td>{{ auteur.dateCreation|date('d/m/Y H:i') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3" class="text-center text-muted">Aucun Auteur trouvé.</td>  <!-- Correction du colspan -->
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if baseUrl %}
+            <a href="{{ baseUrl }}" class="btn btn-primary">Accueil</a>
+        {% else %}
+            <a href="/author/multipleAuthors" class="btn btn-primary">Auteurs avec plusieurs livres</a>
+        {% endif %}
+    </div>
+{% endblock %}

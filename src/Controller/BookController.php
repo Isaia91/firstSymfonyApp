@@ -14,9 +14,33 @@ final class BookController extends AbstractController
     public function index(BookRepository $bookRepository): Response
     {
         $books = $bookRepository->findAll();
+        $baseUrl = false;
+        $bookCount = $bookRepository->countBook();
         return $this->render('book/index.html.twig', [
             'controller_name' => 'BookController',
             'books' => $books,
+            'countBook' => $bookCount,
+            'baseUrl' => $baseUrl,
         ]);
+    }
+
+    #[Route('/authorsWithMultipleBooks/{firstLetter}', name: 'getAuthorsWithMultipleBooks')]
+        public function getAuthorsWithMultipleBooks(BookRepository $bookRepository, string $firstLetter){
+        if ($firstLetter) {
+            $books = $bookRepository->findByFirstLetter($firstLetter);
+            $baseUrl = $this->generateUrl('book_app_book');
+            if ($books) {
+                return $this->render('book/index.html.twig', [
+                    'controller_name' => 'BookController',
+                    'books' => $books,
+                    'baseUrl' => $baseUrl,
+                ]);
+            }
+        }
+        else{
+            return $this->redirectToRoute('book_app_book');
+        }
+
+
     }
 }

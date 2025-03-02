@@ -16,6 +16,20 @@ class AuthorRepository extends ServiceEntityRepository
         parent::__construct($registry, Author::class);
     }
 
+    public function getAuthorsWithMultipleBooks(int $number)
+    {
+        return $this->createQueryBuilder('a')
+            ->innerJoin('a.books', 'b')
+            ->groupBy('a.id')
+            ->having('COUNT(b.id) > :number')
+            ->setParameter('number', $number)
+            ->getQuery()
+            ->getResult();
+    }
+
+
+
+
 //    /**
 //     * @return Author[] Returns an array of Author objects
 //     */
