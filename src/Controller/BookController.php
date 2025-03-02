@@ -29,10 +29,12 @@ final class BookController extends AbstractController
         if ($firstLetter) {
             $books = $bookRepository->findByFirstLetter($firstLetter);
             $baseUrl = $this->generateUrl('book_app_book');
+            $bookCount = count($books);
             if ($books) {
                 return $this->render('book/index.html.twig', [
                     'controller_name' => 'BookController',
                     'books' => $books,
+                    'countBook' => $bookCount,
                     'baseUrl' => $baseUrl,
                 ]);
             }
