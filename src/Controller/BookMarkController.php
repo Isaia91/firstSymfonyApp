@@ -21,6 +21,8 @@ final class BookMarkController extends AbstractController
             'controller_name' => 'BookMarkController',
         ]);
     }*/
+
+    /*
     #[Route("/add/static", name: "add_bookmark_static")]
     public function add_bookmark_static(EntityManagerInterface $entityManager): Response
     {
@@ -47,6 +49,7 @@ final class BookMarkController extends AbstractController
 
         return $this->redirectToRoute('book_mark_app_book_mark'); // Redirection vers la liste des bookmarks
     }
+    */
 
 
     #[Route('', name: 'app_book_mark')]
@@ -62,6 +65,7 @@ final class BookMarkController extends AbstractController
 
     }
 
+    /*
     #[Route("/add", name: "add_bookmark", methods: ['POST'])]
     public function add_bookmark(EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -84,7 +88,7 @@ final class BookMarkController extends AbstractController
             'success' => true,
         ]);
     }
-
+    */
 
 
     #[Route('/{id}',  name: "detail", requirements: ["id" => "\d+"])]
