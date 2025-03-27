@@ -1,24 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un Bookmark{% endblock %}
+{% block title %}Ajouter un book{% endblock %}
 
 {% block body %}
 
     <div class="container mt-4">
-        <h1 class="mb-4">Formulaire d'ajout d'un bookmark</h1>
+        <h1 class="mb-4">Formulaire d'ajout d'un book</h1>
         <div class="row">
             <div class="col-md-4">
-                {{ form(formulaire_book_mark) }}
+                {{ form(formulaire_book) }}
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 {% if baseUrl %}
-                    <a href="/book/mark" class="btn btn-secondary">Accueil</a>
+                    <a href="{{ baseUrl }}" class="btn btn-secondary">Accueil</a>
                 {% endif %}
             </div>
         </div>
-
     </div>
 
 
