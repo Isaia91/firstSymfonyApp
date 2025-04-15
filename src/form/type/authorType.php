@@ -25,10 +25,6 @@ class authorType extends AbstractType
                 'label' => 'Prénom',
                 'label_attr' => ['class' => 'form-label'],
                 'attr' => ['class' => 'form-control'],
-            ])
-            ->add('valider', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-success mt-3'],
-                'label' => 'Enregistrer',
             ]);
     }
 

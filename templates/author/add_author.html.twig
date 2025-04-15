@@ -8,7 +8,15 @@
         <h1 class="mb-4">Formulaire d'ajout auteur</h1>
         <div class="row">
             <div class="col-md-4">
-                {{ form(formulaire_author) }}
+                {{ form_start(formulaire_author) }}
+                {{ form_row(formulaire_author.nom) }}
+                {{ form_row(formulaire_author.prenom) }}
+
+                <button type="submit" class="btn btn-success mt-3">
+                    {{ formulaire_author.vars.value.id ? 'Mettre à jour' : 'Créer l’auteur' }}
+                </button>
+                {{ form_end(formulaire_author) }}
+
             </div>
         </div>
         <div class="row">

@@ -65,4 +65,31 @@ final class AuthorController extends AbstractController
         ]);
     }
 
+
+    #[Route('/edit/{id}', name: 'edit')]
+    public function edit(int $id, Request $request, ManagerRegistry $doctrine, AuthorRepository $authorRepository): Response
+    {
+        $author = $authorRepository->find($id);
+
+        if (!$author) {
+            throw $this->createNotFoundException('Auteur non trouvé');
+        }
+
+        $form = $this->createForm(AuthorType::class, $author);
+        $form->handleRequest($request);
+        $baseUrl = $this->generateUrl('author_app_author');
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('author_app_author');
+        }
+
+        return $this->render('author/edit_author.html.twig', [
+            'formulaire_author' => $form,
+            'baseUrl' => $baseUrl,
+        ]);
+    }
+
 }

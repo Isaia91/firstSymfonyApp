@@ -1,0 +1,23 @@
+{# templates/author/edit_author.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un auteur{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <div class="row">
+            <h1>Modifier un auteur</h1>
+            <div class="col-md-4">
+                {{ form_start(formulaire_author) }}
+                {{ form_widget(formulaire_author) }}
+                <button class="btn btn-primary mt-3">Mettre à jour</button>
+                {{ form_end(formulaire_author) }}
+
+                <a href="{{ baseUrl }}" class="btn btn-secondary mt-3">Retour</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
