@@ -76,4 +76,29 @@ final class BookController extends AbstractController
                 'formulaire_book' => $form,
             ]);
     }
+
+    #[Route('/edit/{id}', name: 'edit')]
+    public function edit(int $id, Request $request, ManagerRegistry $doctrine, BookRepository $bookRepository): Response
+    {
+        $book = $bookRepository->find($id);
+
+        if (!$book) {
+            throw $this->createNotFoundException('Livre non trouvé');
+        }
+
+        $form = $this->createForm(bookType::class, $book);
+        $form->handleRequest($request);
+        $baseUrl = $this->generateUrl('book_app_book');
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('book_app_book');
+        }
+
+        return $this->render('book/add_book.html.twig', [
+            'formulaire_book' => $form,
+            'baseUrl' => $baseUrl,
+        ]);
+    }
+
 }
