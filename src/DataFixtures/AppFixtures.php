@@ -17,9 +17,6 @@ use App\Repository\TagRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
-use App\Entity\Employe;
-use App\Entity\Adresse;
-
 
 class AppFixtures extends Fixture
 {
@@ -83,27 +80,25 @@ class AppFixtures extends Fixture
         }
         $manager->flush();
 
-        // Création des headings
-        for ($i = 0; $i < 5; $i++) {
-            $heading = new Heading();
-            $heading->setNom($faker->word());
-            $heading->setDateCreation(new \DateTime());
-
-            $manager->persist($heading);
-        }
+        // Création du heading
+        $heading = new Heading();
+        $heading->setNom('Cailloux');
+        $heading->setDateCreation(new \DateTime());
+        $manager->persist($heading);
         $manager->flush();
 
         // Récupération des headings existants
         $headings = $this->headingRepository->findAll();
 
         // Création des catégories
-        for ($i = 0; $i < 5; $i++) {
-            $category = new Category();
-            $category->setNom($faker->word());
-            $category->setHeading($headings[array_rand($headings)]);
-
-            $manager->persist($category);
-        }
+        $faunes = new Category();
+        $faunes->setNom('Faunes');
+        $faunes->setHeading($heading);
+        $manager->persist($faunes);
+        $flores = new Category();
+        $flores->setNom('Flores');
+        $flores->setHeading($heading);
+        $manager->persist($flores);
         $manager->flush();
 
         // Création des tags
@@ -130,42 +125,25 @@ class AppFixtures extends Fixture
 
         // Création des médias
         $categories = $this->categoryRepository->findAll();
-        for ($i = 0; $i < 5; $i++) {
+        $mediaData = [
+            [$faunes, 'Correlophus sarasinorum', 'faunes/gecko.jpeg', 'Un gecko de grande taille, mesurant 135 mm de long, avec une queue de longueur similaire. Ses orteils sont modérés, son dos présente un brun pâle à sombre, des marques en V claires sur la nuque et des taches pâles de chaque côté du dos.'],
+            [$faunes, 'Trichoglossus haematodus deplanchei', 'faunes/perruche.jpeg', 'Cet oiseau de 25 cm, à tête violette, gorge rouge et corps vert, avec un bec crochu, vit en bandes bruyantes dans les forêts. Il se nourrit de fleurs et fruits, niche dans des troncs creux et se reproduit de mai à juillet et novembre à décembre.'],
+            [$faunes, 'Rhynochetos jubatus', 'faunes/cagou.jpg', 'Oiseau blanc de 50-60 cm au bec jaune, inapte au vol, vivant en forêt dense. Niche de mai à décembre avec un œuf tacheté, incubation de 34-35 jours. Se nourrit de vers, insectes, reptiles. Environ 1000 individus en Nouvelle-Calédonie, classé "En danger".'],
+            [$faunes, 'Pseudanthias cooperi', 'faunes/pseudanthiasCooperi.jpeg', 'Le Pseudanthias cooperi, ou "Anthias de Cooper", est un poisson marin coloré de la famille des Serranidae. Il vit principalement dans les récifs coralliens tropicaux de l\'Indo-Pacifique, notamment autour de l\'Australie, et est prisé en aquariophilie.'],
+
+            [$flores, 'Graptophyllum macrostemon', 'flores/graptophyllumMacrostemon.jpg', 'Arbuste de 1 m, peu ramifié, corolle rose, étamines de 4,5 cm, feuilles obovales, glabres, pétiole de 10-18 mm.'],
+            [$flores, 'Vitex rotundifolia', 'flores/vitexRotundifolia.jpg', 'Arbrisseau avec des tiges rampantes pouvant s\'enraciner au contact du sol.'],
+            [$flores, 'Stenocarpus umbelliferus', 'flores/stenocarpusUmbelliferus.jpeg', 'Arbrisseau prostré ou élancé atteignant 5 m, avec rameaux aplatis jeunes et arrondis âgés, écorce brunâtre fendue.'],
+            [$flores, 'Tapeinosperma psaladense', 'flores/tapeinospermaPsaladense.jpeg', 'Arbuste buissonnant, feuilles petites à moyennes, subelliptiques à spathulées. Pétiole court, parfois distinct. Inflorescences terminales, 2 fois ramifiées, fleurs blanches, axe non verruqueux.']
+        ];
+
+        foreach ($mediaData as [$category, $nom, $lien, $description]) {
             $media = new Media();
-            $media->setNom($faker->word());
-            $media->setLien($faker->url());
-            $media->setDescription($faker->paragraph(2));
-
-            $media->setCategory($categories[array_rand($categories)]);
+            $media->setCategory($category);
+            $media->setNom($nom);
+            $media->setLien($lien);
+            $media->setDescription($description);
             $manager->persist($media);
-        }
-        $manager->flush();
-
-        // Création de 5 adresses
-        $adresses = [];
-        for ($i = 0; $i < 5; $i++) {
-            $adresse = new Adresse();
-            $adresse->setVille($faker->city());
-            $adresse->setNomRue($faker->streetName());
-            $adresse->setNumeroRue($faker->buildingNumber());
-            $adresse->setCodePostal($faker->postcode());
-
-            $manager->persist($adresse);
-            $adresses[] = $adresse;
-        }
-        $manager->flush();
-
-        // Création de 10 employés liés à des adresses aléatoires
-        for ($i = 0; $i < 10; $i++) {
-            $employe = new Employe();
-            $employe->setNom($faker->lastName());
-            $employe->setPrenom($faker->firstName());
-
-            // Choisir une adresse aléatoire parmi celles créées
-            $adresse = $faker->randomElement($adresses);
-            $employe->setAdresse($adresse);
-
-            $manager->persist($employe);
         }
         $manager->flush();
     }

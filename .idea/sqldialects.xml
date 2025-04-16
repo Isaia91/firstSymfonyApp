@@ -2,5 +2,6 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/sql_data_base_back_up/createUserQuery.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/DataFixtures/Sql_Queries/Cailloux/MinimuCaillouxSection.sql" dialect="MySQL" />
   </component>
 </project>
