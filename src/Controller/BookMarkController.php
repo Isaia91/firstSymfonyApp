@@ -72,6 +72,33 @@ final class BookMarkController extends AbstractController
                 ]);
     }
 
+    #[Route('/edit/{id}', name: 'edit')]
+    public function edit(int $id, Request $request, ManagerRegistry $doctrine, BookMarkRepository $bookMarkRepository): Response
+    {
+        $bookmark = $bookMarkRepository->find($id);
+
+        if (!$bookmark) {
+            throw $this->createNotFoundException('Bookmark non trouvé');
+        }
+
+        $form = $this->createForm(bookmarkType::class, $bookmark);
+        $form->handleRequest($request);
+        $baseUrl = $this->generateUrl('book_mark_app_book_mark');
+        $action = "de modification";
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $doctrine->getManager()->flush();
+            return $this->redirectToRoute('book_mark_app_book_mark');
+        }
+
+        return $this->render('book_mark/add_bookmark.html.twig', [
+            'formulaire_book_mark' => $form,
+            'baseUrl' => $baseUrl,
+            'action' => $action,
+        ]);
+    }
+
+
 
 
 }

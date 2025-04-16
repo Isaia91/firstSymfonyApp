@@ -58,6 +58,7 @@ final class BookController extends AbstractController
         $book = new book();
         $form = $this->createForm(bookType::class, $book);
         $form->handleRequest($request);
+        $action = "d'ajout";
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
@@ -74,6 +75,7 @@ final class BookController extends AbstractController
             , [
                 'baseUrl' => $baseUrl,
                 'formulaire_book' => $form,
+                'action'=>$action,
             ]);
     }
 
@@ -89,6 +91,7 @@ final class BookController extends AbstractController
         $form = $this->createForm(bookType::class, $book);
         $form->handleRequest($request);
         $baseUrl = $this->generateUrl('book_app_book');
+        $action = "de modification";
 
         if ($form->isSubmitted() && $form->isValid()) {
             $doctrine->getManager()->flush();
@@ -98,6 +101,7 @@ final class BookController extends AbstractController
         return $this->render('book/add_book.html.twig', [
             'formulaire_book' => $form,
             'baseUrl' => $baseUrl,
+            'action'=>$action,
         ]);
     }
 
