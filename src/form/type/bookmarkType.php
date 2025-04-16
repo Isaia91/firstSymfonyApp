@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Form\Type;
+namespace App\form\type;
 
 use App\Entity\BookMark;
 use Symfony\Component\Form\AbstractType;
@@ -13,7 +13,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Tag;
 
 
-class BookmarkType extends AbstractType
+class bookmarkType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {

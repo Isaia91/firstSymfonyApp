@@ -2,12 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="c712018b-793f-4053-bf53-355faab77772" name="VPS_OVH">
-        <fileTransfer rootFolder="/var/www/projets/symfony" accessType="SFTP" host="139.99.134.144" port="22" sshConfigId="ead12d71-8926-4edc-a958-6f39102ddd12" sshConfig="isaia@139.99.134.144:22 key" keyPair="true">
-          <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
-          </advancedOptions>
-        </fileTransfer>
+      <webServer id="c712018b-793f-4053-bf53-355faab77772" name="VPS_OVH" url="http://localhost">
+        <fileTransfer accessType="LOCAL" port="0" />
       </webServer>
     </option>
   </component>
