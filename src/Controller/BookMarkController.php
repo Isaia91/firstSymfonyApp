@@ -21,9 +21,11 @@ final class BookMarkController extends AbstractController
     public function index(BookMarkRepository $bookMarkRepository): Response
     {
         $bookmarks = $bookMarkRepository->findAll();
+        $baseUrl  = $this->generateUrl('book_mark_app_book_mark');
         return $this->render('book_mark/index.html.twig', [
             'controller_name' => 'BookMarkController',
             'bookmarks' => $bookmarks,
+            'baseUrl' =>$baseUrl,
         ]);
 
 
@@ -46,7 +48,6 @@ final class BookMarkController extends AbstractController
     #[Route('/add', name: 'app_book_mark_add')]
     public function ajout(Request $request, ManagerRegistry $doctrine)
     {
-        // Création d’un objet que l'on assignera au formulaire
         $bookmark = new bookmark();
         $form = $this->createForm(bookmarkType::class, $bookmark);
         $form->handleRequest($request);
@@ -64,9 +65,11 @@ final class BookMarkController extends AbstractController
             return $this->redirectToRoute('book_mark_app_book_mark');
         }
             return $this->render('book_mark/add_bookmark.html.twig'
-            , [
-                'formulaire_book_mark' => $form,
-            ]);
+            ,
+                [
+                    'formulaire_book_mark' => $form,
+                    'baseUrl' =>$baseUrl,
+                ]);
     }
 
 

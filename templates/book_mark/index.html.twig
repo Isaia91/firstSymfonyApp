@@ -5,7 +5,9 @@
 {% block body %}
     <div class="container mt-4">
         <h1 class="mb-4">Liste des Bookmarks</h1>
-
+        {% if baseUrl %}
+            <a href="{{ baseUrl }}/add" class="btn btn-primary my-3">Ajouter</a>
+        {% endif %}
         <table class="table table-striped table-hover">
             <thead class="table-dark">
             <tr>

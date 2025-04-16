@@ -9,6 +9,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use App\Entity\Tag;
+
 
 class BookmarkType extends AbstractType
 {
@@ -22,6 +25,15 @@ class BookmarkType extends AbstractType
             ->add('commentaire', null, [
                 'required' => true,
                 'attr' => ['class' => 'form-control', 'placeholder' => 'Entrez un commentaire']
+            ])
+            ->add('tags', EntityType::class, [
+                'class' => Tag::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'expanded' => true,
+                'label' => 'Tags',
+                'required' => false,
+                'attr' => ['class' => 'form-check']
             ])
             ->add('valider', SubmitType::class, [
                 'attr' => ['class' => 'btn btn-primary my-3'],

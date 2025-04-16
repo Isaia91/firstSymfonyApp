@@ -18,7 +18,7 @@ class Tag
     /**
      * @var Collection<int, BookMark>
      */
-    #[ORM\ManyToMany(targetEntity: BookMark::class, inversedBy: 'tags')]
+    #[ORM\ManyToMany(targetEntity: BookMark::class, mappedBy: 'tags')]
     private Collection $bookmark;
 
     #[ORM\Column(length: 255)]

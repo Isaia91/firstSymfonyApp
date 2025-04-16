@@ -28,8 +28,10 @@ class BookMark
     /**
      * @var Collection<int, Tag>
      */
-    #[ORM\ManyToMany(targetEntity: Tag::class, mappedBy: 'bookmark')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'bookmark')]
+    #[ORM\JoinTable(name: 'tag_book_mark')] //force a prendre cette table et ne pas chercher une table book_mark_tag
     private Collection $tags;
+
 
     public function __construct()
     {
@@ -94,6 +96,16 @@ class BookMark
 
         return $this;
     }
+
+    public function setTags(iterable $tags): static
+    {
+        $this->tags->clear();
+        foreach ($tags as $tag) {
+            $this->addTag($tag);
+        }
+        return $this;
+    }
+
 
     public function removeTag(Tag $tag): static
     {
