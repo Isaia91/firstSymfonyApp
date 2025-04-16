@@ -33,11 +33,12 @@ final class AuthorController extends AbstractController
     {
         $authors = $authorRepository->getAuthorsWithMultipleBooks(1);
         $baseUrl = $this->generateUrl('author_app_author');
-
+        $urlToAdd = false;
         return $this->render('author/index.html.twig', [
             'controller_name' => 'AuthorController',
             'authors' => $authors,
             'baseUrl' => $baseUrl,
+            'urlToAdd' => $urlToAdd,
         ]);
     }
 

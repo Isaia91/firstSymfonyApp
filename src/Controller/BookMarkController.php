@@ -50,6 +50,7 @@ final class BookMarkController extends AbstractController
         $bookmark = new bookmark();
         $form = $this->createForm(bookmarkType::class, $bookmark);
         $form->handleRequest($request);
+        $baseUrl = $this->generateUrl('book_mark_app_book_mark');
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
@@ -60,7 +61,7 @@ final class BookMarkController extends AbstractController
             $entityManager->persist($bookmark);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_book_mark');
+            return $this->redirectToRoute('book_mark_app_book_mark');
         }
             return $this->render('book_mark/add_bookmark.html.twig'
             , [
