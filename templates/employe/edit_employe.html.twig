@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'employé{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Modifier l'employé</h1>
+
+        {{ form_start(formulaire_employe) }}
+
+        <div class="mb-3">
+            {{ form_label(formulaire_employe.nom) }}
+            {{ form_widget(formulaire_employe.nom) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(formulaire_employe.prenom) }}
+            {{ form_widget(formulaire_employe.prenom) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(formulaire_employe.adresse) }}
+            {{ form_widget(formulaire_employe.adresse) }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Modifier</button>
+
+        {{ form_end(formulaire_employe) }}
+
+        {% if baseUrl %}
+            <a href="{{ baseUrl }}" class="btn btn-secondary mt-3">Retour</a>
+        {% endif %}
+    </div>
+{% endblock %}

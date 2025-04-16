@@ -17,6 +17,9 @@ use App\Repository\TagRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
+use App\Entity\Employe;
+use App\Entity\Adresse;
+
 
 class AppFixtures extends Fixture
 {
@@ -136,7 +139,34 @@ class AppFixtures extends Fixture
             $media->setCategory($categories[array_rand($categories)]);
             $manager->persist($media);
         }
+        $manager->flush();
 
+        // Création de 5 adresses
+        $adresses = [];
+        for ($i = 0; $i < 5; $i++) {
+            $adresse = new Adresse();
+            $adresse->setVille($faker->city());
+            $adresse->setNomRue($faker->streetName());
+            $adresse->setNumeroRue($faker->buildingNumber());
+            $adresse->setCodePostal($faker->postcode());
+
+            $manager->persist($adresse);
+            $adresses[] = $adresse;
+        }
+        $manager->flush();
+
+        // Création de 10 employés liés à des adresses aléatoires
+        for ($i = 0; $i < 10; $i++) {
+            $employe = new Employe();
+            $employe->setNom($faker->lastName());
+            $employe->setPrenom($faker->firstName());
+
+            // Choisir une adresse aléatoire parmi celles créées
+            $adresse = $faker->randomElement($adresses);
+            $employe->setAdresse($adresse);
+
+            $manager->persist($employe);
+        }
         $manager->flush();
     }
 }

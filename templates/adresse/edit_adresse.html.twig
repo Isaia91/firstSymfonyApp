@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'adresse{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Modifier l'adresse</h1>
+
+        {{ form_start(formulaire_adresse) }}
+
+        <div class="mb-3">
+            {{ form_label(formulaire_adresse.ville) }}
+            {{ form_widget(formulaire_adresse.ville) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(formulaire_adresse.nomRue) }}
+            {{ form_widget(formulaire_adresse.nomRue) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(formulaire_adresse.numeroRue) }}
+            {{ form_widget(formulaire_adresse.numeroRue) }}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(formulaire_adresse.codePostal) }}
+            {{ form_widget(formulaire_adresse.codePostal) }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Modifier</button>
+
+        {{ form_end(formulaire_adresse) }}
+
+        {% if baseUrl %}
+            <a href="{{ baseUrl }}" class="btn btn-secondary mt-3">Retour</a>
+        {% endif %}
+    </div>
+{% endblock %}
