@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/book', name: 'book_')]
 final class BookController extends AbstractController
 {
+    // Affiche la liste des livres
     #[Route('', name: 'app_book')]
     public function index(BookRepository $bookRepository): Response
     {
@@ -28,8 +29,10 @@ final class BookController extends AbstractController
         ]);
     }
 
+    // Récupère les auteurs ayant plusieurs livres, filtrés par la première lettre
     #[Route('/authorsWithMultipleBooks/{firstLetter}', name: 'getAuthorsWithMultipleBooks')]
-        public function getAuthorsWithMultipleBooks(BookRepository $bookRepository, string $firstLetter){
+    public function getAuthorsWithMultipleBooks(BookRepository $bookRepository, string $firstLetter)
+    {
         if ($firstLetter) {
             $books = $bookRepository->findByFirstLetter($firstLetter);
             $baseUrl = $this->generateUrl('book_app_book');
@@ -42,14 +45,12 @@ final class BookController extends AbstractController
                     'baseUrl' => $baseUrl,
                 ]);
             }
-        }
-        else{
+        } else {
             return $this->redirectToRoute('book_app_book');
         }
-
-
     }
 
+    // Ajoute un nouveau livre
     #[Route('/add', name: 'app_book_add')]
     public function ajout(Request $request, ManagerRegistry $doctrine)
     {
@@ -62,7 +63,7 @@ final class BookController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
-            //date de creation
+            // Date de création
             $book->setDateCreation(new \DateTime());
 
             $entityManager = $doctrine->getManager();
@@ -71,14 +72,14 @@ final class BookController extends AbstractController
 
             return $this->redirectToRoute('book_app_book');
         }
-        return $this->render('book/add_book.html.twig'
-            , [
-                'baseUrl' => $baseUrl,
-                'formulaire_book' => $form,
-                'action'=>$action,
-            ]);
+        return $this->render('book/add_book.html.twig', [
+            'baseUrl' => $baseUrl,
+            'formulaire_book' => $form,
+            'action' => $action,
+        ]);
     }
 
+    // Modifie un livre existant
     #[Route('/edit/{id}', name: 'edit')]
     public function edit(int $id, Request $request, ManagerRegistry $doctrine, BookRepository $bookRepository): Response
     {
@@ -101,8 +102,7 @@ final class BookController extends AbstractController
         return $this->render('book/add_book.html.twig', [
             'formulaire_book' => $form,
             'baseUrl' => $baseUrl,
-            'action'=>$action,
+            'action' => $action,
         ]);
     }
-
 }

@@ -11,9 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
+// Définition de la route principale pour les opérations liées aux tags
 #[Route('/tag')]
 final class TagController extends AbstractController
 {
+    // Affiche la liste des tags
     #[Route(name: 'app_tag_index', methods: ['GET'])]
     public function index(TagRepository $tagRepository): Response
     {
@@ -22,6 +24,7 @@ final class TagController extends AbstractController
         ]);
     }
 
+    // Crée un nouveau tag
     #[Route('/new', name: 'app_tag_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -42,6 +45,7 @@ final class TagController extends AbstractController
         ]);
     }
 
+    // Affiche les détails d'un tag spécifique
     #[Route('/{id}', name: 'app_tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
     {
@@ -50,6 +54,7 @@ final class TagController extends AbstractController
         ]);
     }
 
+    // Modifie un tag existant
     #[Route('/{id}/edit', name: 'app_tag_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Tag $tag, EntityManagerInterface $entityManager): Response
     {
@@ -68,6 +73,7 @@ final class TagController extends AbstractController
         ]);
     }
 
+    // Supprime un tag
     #[Route('/{id}', name: 'app_tag_delete', methods: ['POST'])]
     public function delete(Request $request, Tag $tag, EntityManagerInterface $entityManager): Response
     {
