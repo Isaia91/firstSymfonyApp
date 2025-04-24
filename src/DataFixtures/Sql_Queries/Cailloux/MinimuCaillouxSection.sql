@@ -6,7 +6,6 @@ ALTER TABLE heading AUTO_INCREMENT = 1;
 ALTER TABLE category AUTO_INCREMENT = 1;
 ALTER TABLE media AUTO_INCREMENT = 1;
 
--- Tu peux maintenant insérer sans te soucier des IDs :
 INSERT INTO heading (nom, date_creation) VALUES ('Cailloux', NOW());
 
 INSERT INTO category (heading_id, nom) VALUES (1, 'Faunes');

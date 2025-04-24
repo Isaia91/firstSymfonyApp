@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tag{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Modifier Tag</h1>
+
+        <div class="mb-4">
+            {{ include('tag/_form.html.twig', {'button_label': 'Mettre a jour'}) }}
+        </div>
+
+        <a href="{{ path('app_tag_index') }}" class="btn btn-secondary me-2">Retour</a>
+
+        {{ include('tag/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

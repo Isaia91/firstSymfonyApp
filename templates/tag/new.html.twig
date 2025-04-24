@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Tag{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Create New Tag</h1>
+
+        <div class="mb-4">
+            {{ include('tag/_form.html.twig', {'button_label': 'Create'}) }}
+        </div>
+
+        <a href="{{ path('app_tag_index') }}" class="btn btn-secondary">Back to list</a>
+    </div>
+{% endblock %}
