@@ -5,16 +5,26 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1 class="mb-4">Formulaire {{ action }} d'un book</h1>
+        <h1 class="mb-4">
+            {{ action is defined ? ('book.form.title_' ~ action)|trans : 'book.form.title_add'|trans }}
+        </h1>
+
         <div class="row">
             <div class="col-md-4">
-                {{ form(formulaire_book) }}
+                {{ form_start(formulaire_book) }}
+                {{ form_widget(formulaire_book) }}
+
+                <button class="btn btn-primary my-3" type="submit">
+                    {{ action is defined ? ('book.form.submit_' ~ action)|trans : 'book.form.submit_add'|trans }}
+                </button>
+                {{ form_end(formulaire_book) }}
+
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
                 {% if baseUrl %}
-                    <a href="{{ baseUrl }}" class="btn btn-secondary">Accueil</a>
+                    <a href="{{ baseUrl }}" class="btn btn-secondary">{{ 'book.form.back'|trans }}</a>
                 {% endif %}
             </div>
         </div>

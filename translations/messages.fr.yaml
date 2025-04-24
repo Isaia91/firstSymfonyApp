@@ -1,0 +1,81 @@
+homepage:
+  title: "Bienvenue sur mon premier site Symfony"
+  subtitle: "Visitez les différentes fonctionnalités du site."
+  cta: "Voir plus"
+
+navbar:
+  home: "Accueil"
+  bookmarks: "Marques pages"
+  book: "Livre"
+  stones: "Cailloux"
+  authors: "Auteurs"
+  employees: "Employés"
+  address: "Adresse"
+  tag: "Tag"
+
+header:
+  slogan: "Symfony dans tous ses états !"
+
+bookmark:
+  list:
+    title: "Liste des Bookmarks"
+    add: "Ajouter"
+  field:
+    url: "URL"
+    date_creation: "Date de création"
+    commentaire: "Commentaire"
+    tags: "Tag"
+    details: "Détails"
+    actions: "Action"
+  tags:
+    none: "Aucun tag"
+  action:
+    edit: "Modifier"
+    delete: "Supprimer"
+  form:
+    title_add: "Formulaire d'ajout d'un bookmark"
+    title_edit: "Formulaire de modification d'un bookmark"
+    back: "Accueil"
+    save: "Enregistrer"
+  detail:
+    title: "Détail du Bookmark"
+    label: "Libellé"
+    value: "Valeur"
+    not_found: "Aucun bookmark trouvé."
+
+book:
+  list:
+    title: "Liste des Livres"
+    empty: "Aucun livre trouvé."
+    filter:
+      placeholder: "Première lettre du livre"
+      button: "Filtrer"
+  field:
+    titre: "Titre"
+    date_creation: "Date de création"
+    author: "Auteur"
+    action: "Action"
+  author:
+    unknown: "Auteur inconnu"
+  action:
+    edit: "Modifier"
+    add: "Ajouter"
+    back: "Accueil"
+  count: "Nombre total de livres : %count%"
+  form:
+    title_add: "Formulaire d'ajout d'un livre"
+    title_edit: "Formulaire de modification d'un livre"
+    back: "Accueil"
+    submit_add: "Créer"
+    submit_edit: "Mettre à jour"
+category:
+  list:
+    title: "Catégories"
+  no_media: "Aucun média associé"
+  detail:
+    title: "Détail de la catégorie"
+  action:
+    back: "Accueil"
+
+
+

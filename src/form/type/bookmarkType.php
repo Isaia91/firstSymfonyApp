@@ -34,10 +34,6 @@ class bookmarkType extends AbstractType
                 'label' => 'Tags',
                 'required' => false,
                 'attr' => ['class' => 'form-check']
-            ])
-            ->add('valider', SubmitType::class, [
-                'attr' => ['class' => 'btn btn-primary my-3'],
-                'label' => 'Enregistrer'
             ]);
     }
 

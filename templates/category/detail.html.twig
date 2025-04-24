@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ category.nom }}{% endblock %}
+{% block title %}{{ category.nom ?? 'category.detail.title'|trans }}{% endblock %}
 
 {% block body %}
     <style>
@@ -28,11 +28,11 @@
                             </div>
                         {% endfor %}
                     {% else %}
-                        <p class="text-muted">Aucun média associé</p>
+                        <p class="text-muted">{{ 'category.no_media'|trans }}</p>
                     {% endif %}
                 </div>
             </div>
         </div>
-        <a href="/category/cailloux" class="btn btn-primary">Accueil</a>
+        <a href="/category/cailloux" class="btn btn-secondary">{{ 'category.action.back'|trans }}</a>
     </div>
 {% endblock %}

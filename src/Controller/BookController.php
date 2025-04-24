@@ -58,7 +58,7 @@ final class BookController extends AbstractController
         $book = new book();
         $form = $this->createForm(bookType::class, $book);
         $form->handleRequest($request);
-        $action = "d'ajout";
+        $action = "add";
         if ($form->isSubmitted() && $form->isValid()) {
             $data = $form->getData();
 
@@ -91,7 +91,7 @@ final class BookController extends AbstractController
         $form = $this->createForm(bookType::class, $book);
         $form->handleRequest($request);
         $baseUrl = $this->generateUrl('book_app_book');
-        $action = "de modification";
+        $action = "edit";
 
         if ($form->isSubmitted() && $form->isValid()) {
             $doctrine->getManager()->flush();

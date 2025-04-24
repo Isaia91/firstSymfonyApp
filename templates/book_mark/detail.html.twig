@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Détail du Bookmark{% endblock %}
+{% block title %}{{ 'bookmark.detail.title'|trans }}{% endblock %}
 
 {% block body %}
     <div class="container mt-4">
-        <h1 class="mb-4">Détail du Bookmark</h1>
+        <h1 class="mb-4">{{ 'bookmark.detail.title'|trans }}</h1>
 
         {% if bookmark %}
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
                 <tr>
-                    <th>Libellé</th>
-                    <th>Valeur</th>
+                    <th>{{ 'bookmark.detail.label'|trans }}</th>
+                    <th>{{ 'bookmark.detail.value'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr>
-                    <td><strong>URL</strong></td>
+                    <td><strong>{{ 'bookmark.field.url'|trans }}</strong></td>
                     <td>
                         <a href="{{ bookmark.url }}" target="_blank" class="text-primary">
                             {{ bookmark.url }}
@@ -24,15 +24,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><strong>Date de création</strong></td>
+                    <td><strong>{{ 'bookmark.field.date_creation'|trans }}</strong></td>
                     <td>{{ bookmark.dateCreation|date('d/m/Y H:i') }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Commentaire</strong></td>
+                    <td><strong>{{ 'bookmark.field.commentaire'|trans }}</strong></td>
                     <td>{{ bookmark.commentaire }}</td>
                 </tr>
                 <tr>
-                    <td>Tag</td>
+                    <td>{{ 'bookmark.field.tags'|trans }}</td>
                     <td>
                         {% if bookmark.tags is not empty %}
                             <ul class="list-unstyled">
@@ -41,15 +41,15 @@
                                 {% endfor %}
                             </ul>
                         {% else %}
-                            <span class="text-muted">Aucun tag</span>
+                            <span class="text-muted">{{ 'bookmark.tags.none'|trans }}</span>
                         {% endif %}
                     </td>
                 </tr>
                 </tbody>
             </table>
         {% else %}
-            <p class="text-center text-muted">Aucun bookmark trouvé.</p>
+            <p class="text-center text-muted">{{ 'bookmark.detail.not_found'|trans }}</p>
         {% endif %}
-        <a href="/book/mark" class="btn btn-secondary">Accueil</a>
+        <a href="/book/mark" class="btn btn-secondary">{{ 'bookmark.form.back'|trans }}</a>
     </div>
 {% endblock %}

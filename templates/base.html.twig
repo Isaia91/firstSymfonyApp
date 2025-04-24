@@ -20,6 +20,10 @@
     </header>
         {% block body %}{% endblock %}
     </body>
+    <div class="text-end pe-3">
+        <a href="{{ path('change_locale', { locale: 'fr' }) }}">FR</a> |
+        <a href="{{ path('change_locale', { locale: 'en' }) }}">EN</a>
+    </div>
     <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <footer>
         {{ include('fragments/_footer.html.twig') }}
@@ -30,3 +34,4 @@
         {{ message }}
     </div>
 {% endfor %}
+

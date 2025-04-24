@@ -1,0 +1,80 @@
+homepage:
+  title: "Welcome to my first Symfony website"
+  subtitle: "Explore the different features of the site."
+  cta: "See more"
+
+navbar:
+  home: "Home"
+  bookmarks: "Bookmarks"
+  book: "Book"
+  stones: "Stones"
+  authors: "Authors"
+  employees: "Employees"
+  address: "Address"
+  tag: "Tag"
+
+header:
+  slogan: "Symfony in all its glory!"
+
+
+bookmark:
+  list:
+    title: "Bookmark List"
+    titleEdit : "Edit form bookmark"
+    add: "Add"
+  field:
+    url: "URL"
+    date_creation: "Creation date"
+    commentaire: "Comment"
+    tags: "Tag"
+    details: "Details"
+    actions: "Action"
+  tags:
+    none: "No tag"
+  action:
+    edit: "Edit"
+    delete: "Delete"
+  form:
+    title_add: "Bookmark creation form"
+    title_edit: "Bookmark editing form"
+    back: "Back to list"
+    save: "Save"
+  detail:
+    title: "Bookmark Details"
+    label: "Label"
+    value: "Value"
+    not_found: "No bookmark found."
+
+book:
+  list:
+    title: "List of Books"
+    empty: "No book found."
+    filter:
+      placeholder: "First letter of the book"
+      button: "Filter"
+  field:
+    titre: "Title"
+    date_creation: "Creation Date"
+    author: "Author"
+    action: "Action"
+  author:
+    unknown: "Unknown author"
+  action:
+    edit: "Edit"
+    add: "Add"
+    back: "Back"
+  count: "Total number of books: %count%"
+  form:
+    title_add: "Book creation form"
+    title_edit: "Book editing form"
+    back: "Back"
+    submit_add: "Save"
+    submit_edit: "Update"
+category:
+  list:
+    title: "Categories"
+  no_media: "No media associated"
+  detail:
+    title: "Détail de la catégorie"
+  action:
+    back: "Back to list"

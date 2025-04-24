@@ -69,6 +69,7 @@ final class BookMarkController extends AbstractController
                 [
                     'formulaire_book_mark' => $form,
                     'baseUrl' =>$baseUrl,
+                    'action' => 'add',
                 ]);
     }
 
@@ -84,7 +85,7 @@ final class BookMarkController extends AbstractController
         $form = $this->createForm(bookmarkType::class, $bookmark);
         $form->handleRequest($request);
         $baseUrl = $this->generateUrl('book_mark_app_book_mark');
-        $action = "de modification";
+        $action = "edit";
 
         if ($form->isSubmitted() && $form->isValid()) {
             $doctrine->getManager()->flush();

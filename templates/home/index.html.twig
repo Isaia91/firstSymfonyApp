@@ -5,13 +5,11 @@
     <!-- Hero Section -->
     <header class="text-black text-center py-5">
         <div class="container">
-            <h1 class="display-4">Bienvenue sur mon premier site Symfony</h1>
-            <p class="lead">Visitez les différentes fonctionnalités du site.</p>
-            <a href="/book/mark" class="btn btn-light btn-lg">Voir plus</a>
+            <h1 class="display-4">{{ 'homepage.title'|trans }}</h1>
+            <p class="lead">{{ 'homepage.subtitle'|trans }}</p>
+            <a href="/book/mark" class="btn btn-light btn-lg">{{ 'homepage.cta'|trans }}</a>
         </div>
     </header>
-
-
 
 
 {% endblock %}

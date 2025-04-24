@@ -28,11 +28,7 @@ class bookType extends AbstractType
                 },
                 'placeholder' => 'Sélectionnez un auteur',
                 'attr' => ['class' => 'form-control']
-            ])
-            ->add('valider', SubmitType::class, [
-            'attr' => ['class' => 'btn btn-success my-3'],
-            'label' => 'Enregistrer'
-        ]);
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

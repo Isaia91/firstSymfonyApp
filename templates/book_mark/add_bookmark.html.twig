@@ -5,20 +5,21 @@
 {% block body %}
 
     <div class="container mt-4">
-        <h1 class="mb-4">Formulaire {{ action is defined ? action : "d'ajout" }} d'un bookmark</h1>
-        <div class="row">
-            <div class="col-md-4">
-                {{ form(formulaire_book_mark) }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                {% if baseUrl %}
-                    <a href="/book/mark" class="btn btn-secondary">Accueil</a>
-                {% endif %}
-            </div>
-        </div>
+        <h1 class="mb-4">
+            {{ action is defined ? ('bookmark.form.title_' ~ action)|trans : 'bookmark.form.title_add'|trans }}
+        </h1>
 
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_start(formulaire_book_mark) }}
+                {{ form_widget(formulaire_book_mark) }}
+
+                <button class="btn btn-primary mt-3" type="submit">
+                    {{ 'bookmark.form.save'|trans }}
+                </button>
+                {{ form_end(formulaire_book_mark) }}
+            </div>
+        </div>
     </div>
 
 
